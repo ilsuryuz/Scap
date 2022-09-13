@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 require('dotenv').config();
 
+// ** Listener **
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`We live on port: ${PORT}`));
+
 // ** Database Connection **
 mongoose.connect(process.env.DATABASE_URL);
 
@@ -30,8 +34,7 @@ app.use(session({
 }))
 
 // ** Routes **
-app.get('/scap', (req, res) => {
-    console.log(req.session.currentUser)
+app.get('/', (req, res) => {
     if (req.session.currentUser) {
         res.render('index.ejs', {
             currentUser: req.session.currentUser
@@ -51,7 +54,6 @@ app.use('/users', userController);
 const sessionController = require('./controllers/sessions');
 app.use('/sessions', sessionController)
 
+const forumController = require('./controllers/forum');
+app.use('/forum', forumController)
 
-// ** Listener **
-const PORT = process.env.PORT;
-app.listen(PORT, () => console.log(`We live on port: ${PORT}`));

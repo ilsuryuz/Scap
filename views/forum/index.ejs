@@ -9,24 +9,12 @@
 </head>
 
 <body>
-    <%- include('./partials/nav.ejs')  %>
+    
 	<div class="banner">
         <a href="/" title="Index">
             <img src="" alt="">
         </a>
     </div>
-    <div class="content">
-        <div class="chatbox">
-            <h3>Memebox</h3>
-            <p>Welcome to Scap. Please read forum rules!</p>
-            <div class="chatbox-content">
-                <div class="entry">
-                    <h4>@User</h4>
-                    <p>Text random blah blah</p>
-                    <h5>Date</h5>
-                </div>
-            </div>
-        </div>
         <div class="cat-menu">
             <form action="">
                 <input type="submit" value="Home">
@@ -47,15 +35,17 @@
                     <th>Forum</th>
                     <th>Threads</th>
                     <th>Posts</th>
-                    <th>Last Post</th>
+                    <th>Creator</th>
                 </tr>
+                <% for (let i = 0; i < posts.length; i++){ %> 
                 <tr class="col-icon">
-                    <td><img src="https://cdn2.iconfinder.com/data/icons/wedding-3/48/announcement-256.png" alt=""></td>
-                    <td>Announcements</td>
-                    <td>123</td>
-                    <td>1333</td>
-                    <td>Epic announcement</td>
+                    <td><img src="" alt=""></td>
+                    <td><a href="/forum/<%= posts[i]._id%>"><%= posts[i].name%></a></td>
+                    <td><%= posts[i].posts %> </td>
+                    <td>views</td>
+                    <td><%=posts[i].creator.username%></td>
                 </tr>
+                <% } %> 
             </table>
         </div>
     </div>

@@ -35,7 +35,7 @@ sessionsRouter.post('/', (req, res) => {
                 req.session.currentUser = foundUser;
 
                 // ** redirect back to our home page **
-                res.redirect('/scap');
+                res.redirect('/');
             } else {
                 // ** if the password don't match **
                 res.send('Oops! Invalid credentials.');

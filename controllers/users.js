@@ -2,7 +2,7 @@
 const bcrypt = require('bcrypt');
 const express = require('express');
 const userRouter = express.Router();
-const User = require('../models/user.js');
+const User = require('../models/user');
 
 // ** New reg page **
 userRouter.get('/new', (req, res) => {
@@ -14,7 +14,8 @@ userRouter.get('/new', (req, res) => {
 userRouter.post('/', (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
     User.create(req.body, (error, createdUser) => {
-        res.redirect('/scap');
+        console.log(req.body)
+        res.redirect('/');
     })
 })
 

@@ -9,46 +9,10 @@
 </head>
 
 <body>
-    
-	<div class="banner">
-        <a href="/" title="Index">
-            <img src="" alt="">
-        </a>
-    </div>
-        <div class="cat-menu">
-            <form action="">
-                <input type="submit" value="Home">
-            </form>
-            <form action="">
-                <input type="submit" value="Coding">
-            </form>
-            <form action="">
-                <input type="submit" value="Entertainment">
-            </form>
-            <form action="">
-                <input type="submit" value="Gaming">
-            </form>
-        </div>
-        <div class="cat-content">
-            <table>
-                <tr>
-                    <th>Forum</th>
-                    <th>Threads</th>
-                    <th>Posts</th>
-                    <th>Creator</th>
-                </tr>
-                <% for (let i = 0; i < posts.length; i++){ %> 
-                <tr class="col-icon">
-                    <td><img src="" alt=""></td>
-                    <td><a href="/forum/<%= posts[i]._id%>"><%= posts[i].name%></a></td>
-                    <td><%= posts[i].posts %> </td>
-                    <td>views</td>
-                    <td><%=posts[i].creator.username%></td>
-                </tr>
-                <% } %> 
-            </table>
-        </div>
-    </div>
+    <h1>Test</h1>
+    <% forums.forEach( category => { %> 
+        <h3><%= category.category %> </h3>
+        <% }) %> 
 </body>
 
 </html>

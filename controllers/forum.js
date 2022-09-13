@@ -7,15 +7,14 @@ const session = require('express-session');
 require('dotenv').config();
 
 const Category = require('../models/categories');
-const Comment = require('../models/comment');
-const Content = require('../models/content');
-const Forum = require('../models/forum');
-const subForum = require('../models/subForum');
-const Thread = require('../models/thread');
 
 // ** I **
-forumRouter.get('/post', (req, res) => {
-    
+forumRouter.get('/', (req, res) => {
+    Category.find({}, (error, allForums) => {
+        res.render('forum/index.ejs', {
+            forums: allForums,
+        })
+    })
 })
 // ** N **
 

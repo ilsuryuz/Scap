@@ -2,63 +2,56 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <%- include('./partials/nav.ejs')  %>
-	<div class="banner">
-        <a href="/" title="Index">
-            <img src="" alt="">
-        </a>
-    </div>
-    <div class="content">
-        <div class="chatbox">
-            <h3>Memebox</h3>
-            <p>Welcome to Scap. Please read forum rules!</p>
-            <div class="chatbox-content">
-                <div class="entry">
-                    <h4>@User</h4>
-                    <p>Text random blah blah</p>
-                    <h5>Date</h5>
-                </div>
+    <%- include('./partials/nav.ejs') %>
+        <div class="banner">
+            <a href="/" title="Index">
+                <img src="" alt="">
+            </a>
+        </div>
+        <div class="content">
+            <div class="chatPlace">
+                <%- include('./partials/chat.ejs') %> 
+            </div>
+            <div class="cat-menu">
+                <form action="">
+                    <input type="submit" value="Home">
+                </form>
+                <form action="">
+                    <input type="submit" value="Coding">
+                </form>
+                <form action="">
+                    <input type="submit" value="Entertainment">
+                </form>
+                <form action="">
+                    <input type="submit" value="Gaming">
+                </form>
+            </div>
+            <div class="cat-content">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Forum</th>
+                        <th>Threads</th>
+                        <th>Posts</th>
+                        <th>Last Post</th>
+                    </tr>
+                    <tr class="col-icon">
+                        <td><img src="" alt=""></td>
+                        <td>Announcements</td>
+                        <td>123</td>
+                        <td>1333</td>
+                        <td>Epic announcement</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="cat-menu">
-            <form action="">
-                <input type="submit" value="Home">
-            </form>
-            <form action="">
-                <input type="submit" value="Coding">
-            </form>
-            <form action="">
-                <input type="submit" value="Entertainment">
-            </form>
-            <form action="">
-                <input type="submit" value="Gaming">
-            </form>
-        </div>
-        <div class="cat-content">
-            <table>
-                <tr>
-                    <th>Forum</th>
-                    <th>Threads</th>
-                    <th>Posts</th>
-                    <th>Last Post</th>
-                </tr>
-                <tr class="col-icon">
-                    <td><img src="https://cdn2.iconfinder.com/data/icons/wedding-3/48/announcement-256.png" alt=""></td>
-                    <td>Announcements</td>
-                    <td>123</td>
-                    <td>1333</td>
-                    <td>Epic announcement</td>
-                </tr>
-            </table>
-        </div>
-    </div>
 </body>
 
 </html>

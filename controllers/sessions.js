@@ -32,6 +32,7 @@ sessionsRouter.post('/', (req, res) => {
             // ** If the password matches **
             if (passMatches) {
                 // ** add the user to our session **
+                req.session.authenticated = true;
                 req.session.currentUser = foundUser;
 
                 // ** redirect back to our home page **

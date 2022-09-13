@@ -13,10 +13,6 @@ const path = require('path');
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 
-// ** Models **
-const User = require('./models/user');
-const Comment = require('./models/comment');
-const Post = require('./models/post');
 
 
 // ** Database Connection **

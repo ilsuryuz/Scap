@@ -91,15 +91,18 @@ app.get('/', (req, res) => {
 });
 
 // *** Controllers ***
-// ** User Controller **
+// ** User **
 const userController = require('./controllers/users');
 app.use('/users', userController);
-// ** Session Controller **
+// ** Session **
 const sessionController = require('./controllers/sessions');
 app.use('/sessions', sessionController)
-// ** Forum Controller **
+// ** Forum **
 const forumController = require('./controllers/forum');
 app.use('/forum', forumController)
+// ** Categories **
+const categoryController = require('./controllers/categories');
+app.use('/category', categoryController)
 
 
 // ** Listener **

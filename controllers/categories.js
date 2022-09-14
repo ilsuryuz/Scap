@@ -24,7 +24,18 @@ categoryRouter.delete("/:id", (req, res) => {
     })
 })
 // ** U **
-
+categoryRouter.put('/:id/', (req, res) => {
+    Category.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+            new: true,
+        },
+        (err, updatedCategory) => {
+            res.redirect(`/category/${req.params.id}`)
+        }
+    )
+})
 // ** C **
 categoryRouter.post('/', (req, res) => {
     Category.create(req.body, (err, createdProduct) => {

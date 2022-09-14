@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <h2>Add a New Category</h2>
+    <form action="/category" method="POST">
+        <label for="category">Category name: </label>
+        <input type="text" name="category">
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>

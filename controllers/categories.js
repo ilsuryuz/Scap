@@ -20,7 +20,7 @@ categoryRouter.get('/new-category', (req, res) => {
 // ** D **
 categoryRouter.delete("/:id", (req, res) => {
     Category.findByIdAndDelete(req.params.id, (err, deletedCategory) => {
-        console.log(deletedCategory)
+        res.redirect('/category')
     })
 })
 // ** U **
@@ -39,7 +39,7 @@ categoryRouter.put('/:id/', (req, res) => {
 // ** C **
 categoryRouter.post('/', (req, res) => {
     Category.create(req.body, (err, createdProduct) => {
-        res.send(req.body)
+        res.redirect('/category')
     })
 })
 // ** E **

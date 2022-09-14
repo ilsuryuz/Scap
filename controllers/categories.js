@@ -32,7 +32,13 @@ categoryRouter.post('/', (req, res) => {
     })
 })
 // ** E **
-
+categoryRouter.get('/:id/edit', (req, res) => {
+    Category.findById(req.params.id, (err, foundCategory) => {
+        res.render('category/edit.ejs', {
+            category: foundCategory,
+        })
+    })
+})
 // ** S **
 categoryRouter.get('/:id', (req, res) => {
     Category.findById(req.params.id, (err, foundCategory) => {

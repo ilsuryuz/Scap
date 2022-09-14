@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const { Socket } = require('dgram');
 require('dotenv').config();
+const Category = require('./models/categories');
 
 
 // ** Socket.io ** ref: https://esc-wq.medium.com/simple-chat-server-using-nodejs-socket-io-ce31294926d1
@@ -80,13 +81,20 @@ io.on('connection', (socket) => {
 // ** Server Index **
 app.get('/', (req, res) => {
     if (req.session.currentUser) {
-        res.render('index.ejs', {
-            currentUser: req.session.currentUser
+        Category.find({}, (error, allCategories) => {
+            res.render('index.ejs', {
+                currentUser: req.session.currentUser,
+                category: allCategories,
+                categoryName: allCategories.category,
+            })
         })
     } else {
-        res.render('index.ejs', {
-            currentUser: req.session.currentUser
-        });
+        Category.find({}, (error, allCategories) => {
+            res.render('index.ejs', {
+                currentUser: req.session.currentUser,
+                category: allCategories
+            })
+        })
     };
 });
 

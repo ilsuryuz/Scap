@@ -97,12 +97,12 @@ app.use('/users', userController);
 // ** Session **
 const sessionController = require('./controllers/sessions');
 app.use('/sessions', sessionController)
-// ** Forum **
-const forumController = require('./controllers/forum');
-app.use('/forum', forumController)
 // ** Categories **
 const categoryController = require('./controllers/categories');
 app.use('/category', categoryController)
+// ** Forum **
+
+
 
 
 // ** Listener **

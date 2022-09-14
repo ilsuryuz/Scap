@@ -1,25 +1,21 @@
 // ** Dependencies **
 const express = require('express');
 const categoryRouter = express.Router();
-const methodOverride = require('method-override');
-const mongoose = require('mongoose');
-const session = require('express-session');
 require('dotenv').config();
 
 const Category = require('../models/categories');
 
 // ** I **
 categoryRouter.get('/', (req, res) => {
-    Category.find({}, (error, allForums) => {
-        console.log(allForums)
-        res.render('forum/index.ejs', {
-            forums: allForums,
+    Category.find({}, (error, allCategories) => {
+        res.render('category/index.ejs', {
+            category: allCategories,
         })
     })
 })
 // ** N **
 categoryRouter.get('/new-category', (req, res) => {
-    res.render('forum/new-category.ejs')
+    res.render('category/new-category.ejs')
 })
 // ** D **
 
@@ -34,6 +30,12 @@ categoryRouter.post('/', (req, res) => {
 // ** E **
 
 // ** S **
-
+categoryRouter.get('/:id', (req, res) => {
+    Category.findById(req.params.id, (err, foundCategory) => {
+        res.render('category/show.ejs', {
+            category: foundCategory
+        })
+    })
+})
 // ** Export Sessions Router **
 module.exports = categoryRouter;

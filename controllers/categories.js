@@ -18,7 +18,9 @@ categoryRouter.get('/', (req, res) => {
     })
 })
 // ** N **
-
+categoryRouter.get('/new-category', (req, res) => {
+    res.render('forum/new-category.ejs')
+})
 // ** D **
 
 // ** U **

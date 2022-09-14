@@ -18,7 +18,11 @@ categoryRouter.get('/new-category', (req, res) => {
     res.render('category/new-category.ejs')
 })
 // ** D **
-
+categoryRouter.delete("/:id", (req, res) => {
+    Category.findByIdAndDelete(req.params.id, (err, deletedCategory) => {
+        console.log(deletedCategory)
+    })
+})
 // ** U **
 
 // ** C **

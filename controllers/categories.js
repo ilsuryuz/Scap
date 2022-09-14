@@ -26,7 +26,11 @@ categoryRouter.get('/new-category', (req, res) => {
 // ** U **
 
 // ** C **
-
+categoryRouter.post('/', (req, res) => {
+    Category.create(req.body, (err, createdProduct) => {
+        res.send(req.body)
+    })
+})
 // ** E **
 
 // ** S **

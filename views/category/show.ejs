@@ -2,6 +2,9 @@
 <html lang="en">
     <%- include('../partials/head.ejs') %>
 <body>
+    <form action="/category">
+        <input type="submit" value="Back" />
+    </form>
     <h3><%= category.category %> </h3>
     <form action="/category/<%=category._id%>/edit">
         <input type="submit" value="Edit Category" />

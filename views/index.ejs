@@ -42,13 +42,28 @@
                                 <th>Last Post</th>
                             </tr>
                             <tr class="col-icon">
+                                <% if (currentUser) { %>
+                                    <% if (currentUser.username==="admin" ) {%>
+                                        <div>
+                                            <form action="/forum/<%=category._id%>/new-forum">
+                                                <input type="submit" value="Add Forum">
+                                            </form>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
                                 <td><img src="" alt=""></td>
+                                <% category.forum.forEach(forum => { %> 
                                 <td>
-                                    <%= category.category%>
+                                    <%= forum.name%>
                                 </td>
-                                <td>123</td>
-                                <td>1333</td>
-                                <td>Epic announcement</td>
+                                <td><%=forum.threads.length%></td>
+                                <% let activity = 0; %> 
+                                <% forum.subForum.forEach(subForum => {activity = activty + subForum.threads.length; subForum.threads.forEach(thread =>{activty = activity + thread.comments.length})}); %> 
+                                <% forum.threads.forEach(thread => {activity = activity+ thread.comments.length;}) %> 
+                                <% activity = activity + forum.threads.length; %> 
+                                <td><%= activity%> </td>
+                                <td><%= forum.threads[forum.threads.length -1].name %> </td>
+                                <% }) %> 
                             </tr>
                         </table>
                     </div>

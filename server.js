@@ -6,13 +6,17 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const { Socket } = require('dgram');
 require('dotenv').config();
+
+// ** Models **
 const Category = require('./models/categories');
 
+const Forum = require('./models/forum')
 
 // ** Socket.io ** ref: https://esc-wq.medium.com/simple-chat-server-using-nodejs-socket-io-ce31294926d1
 const path = require('path');
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+
 
 
 // ** Database Connection **
@@ -29,6 +33,7 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+
 
 // *** Body-Parser ***
 app.use(express.urlencoded({ extended: true }));
@@ -52,6 +57,7 @@ app.use(sessionMiddleware)
 // ** Let Socket.io use same middleware as app **
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware));
+
 
 // ** Only allow authenticated users for socket.io **
 io.use((socket, next) => {
@@ -81,20 +87,14 @@ io.on('connection', (socket) => {
 // ** Server Index **
 app.get('/', (req, res) => {
     if (req.session.currentUser) {
-        Category.find({}, (error, allCategories) => {
+        Category.find({}).populate('forum').exec(function (err, allCategories) {
             res.render('index.ejs', {
                 currentUser: req.session.currentUser,
                 category: allCategories,
-                categoryName: allCategories.category,
             })
         })
     } else {
-        Category.find({}, (error, allCategories) => {
-            res.render('index.ejs', {
-                currentUser: req.session.currentUser,
-                category: allCategories
-            })
-        })
+        res.redirect('/sessions/new')
     };
 });
 
@@ -109,7 +109,8 @@ app.use('/sessions', sessionController)
 const categoryController = require('./controllers/categories');
 app.use('/category', categoryController)
 // ** Forum **
-
+const forumController = require('./controllers/forum');
+app.use('/forum', forumController);
 
 
 

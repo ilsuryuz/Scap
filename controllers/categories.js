@@ -7,6 +7,7 @@ const Category = require('../models/categories');
 
 // ** I **
 categoryRouter.get('/', (req, res) => {
+    console.log(req.session)
     Category.find({}, (error, allCategories) => {
         res.render('category/index.ejs', {
             category: allCategories,

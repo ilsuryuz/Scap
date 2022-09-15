@@ -7,3 +7,4 @@ const contentSchema = new mongoose.Schema({
 }, {timestamps: true})
 
 const Content = mongoose.model('Content', contentSchema);
+module.exports = Content;

@@ -6,9 +6,9 @@
         <input type="submit" value="Back" />
     </form>
     <h2>Add a New Category</h2>
-    <form action="/category" method="POST">
-        <label for="category">Category name: </label>
-        <input type="text" name="category">
+    <form action="/forum/<%=catID%>" method="POST">
+        <label for="name">Category name: </label>
+        <input type="text" name="name">
         <input type="submit" value="Add">
     </form>
 </body>

@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../partials/head.ejs') %>
-<body>
-    <form action="/category">
-        <input type="submit" value="Back" />
-    </form>
-    <h2>Add a New Category</h2>
-    <form action="/thread/<%=forumID%>" method="POST">
-        <label for="name">Thread name: </label>
-        <input type="text" name="name">
-        <input type="submit" value="Add">
-    </form>
-</body>
+<%- include('../partials/head.ejs') %>
+
+    <body>
+        <form action="/forum">
+            <input type="submit" value="Back" />
+        </form>
+        <h2>Add a New Topic</h2>
+        <form action="/thread/<%=forumID%>" method="POST">
+            <label for="name">Thread name: </label>
+            <input type="text" name="name"></br >
+            <textarea name="content" id="threadContent" cols="30" rows="10"></textarea>
+            <input type="submit" value="Add">
+        </form>
+        <script>
+            tinymce.init({
+                selector: 'textarea#threadContent',
+                plugins: 'emoticons image',
+                menubar: false,
+                toolbar: 'emoticons image',
+            });
+        </script>
+    </body>
+
 </html>

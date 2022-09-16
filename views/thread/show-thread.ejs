@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+
+    <body>
+        <form action="/">
+            <input type="submit" value="Back" />
+        </form>
+
+        <form action="/thread/<%=thread._id%>/edit">
+            <input type="submit" value="Edit Thread" />
+        </form>
+        <h3>
+            <%= thread.name %>
+        </h3>
+        <div class="content-Thread">
+            <%- thread.content %> 
+        </div>
+        </div>
+    </body>
+
+</html>

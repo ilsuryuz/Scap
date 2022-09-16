@@ -18,7 +18,8 @@
                     <th>Replies</th>
                     <th>By</th>
                     <th>Date</th>
-                </tr>
+                </tr></br >
+                <% forum.threads.forEach(thread=> { %> 
                 <tr class="col-icon">
                     <% if (currentUser) { %>
                             <div>
@@ -27,7 +28,6 @@
                                 </form>
                             </div>
                                 <% } %>
-                    <% forum.threads.forEach(thread=> { %> 
                     <td>
                         <a href="/thread/<%=thread._id%>"><%=thread.name %></a>
                     </td>

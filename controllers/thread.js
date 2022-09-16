@@ -34,8 +34,9 @@ threadRouter.put('/:id/', (req, res) => {
 // ** C **
 threadRouter.post('/:forum', (req, res) => {
     Thread.create(req.body, (err, createdThread) => {
-        createdThread.creator = req.session.currentUser;
+        createdThread.creator = req.session.currentUser._id;
         createdThread.save()
+        
         
         Forum.findById(req.params.forum, (err, foundForum) => {
             foundForum.threads.push(createdThread._id)
@@ -54,9 +55,9 @@ threadRouter.get('/:id/edit', (req, res) => {
 })
 // ** S **
 threadRouter.get('/:id', (req, res) => {
-    Forum.findById(req.params.id, (err, foundForum) => {
+    Thread.findById(req.params.id, (err, foundThread) => {
         res.render('thread/show-thread.ejs', {
-            forum: foundForum
+            thread: foundThread
         })
     })
 })

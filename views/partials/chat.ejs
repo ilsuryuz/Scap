@@ -15,9 +15,9 @@
         // ** Communication between Server and Client **
                 tinymce.init({
                   selector: 'textarea.editor',
-                  plugins: 'emoticons',
+                  plugins: 'emoticons image',
                   menubar: false,
-                  toolbar: 'emoticons',
+                  toolbar: 'emoticons image',
                 });
         const socket = io();
         $('.chatForm').submit(function () {

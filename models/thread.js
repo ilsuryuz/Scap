@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const threadSchema = new mongoose.Schema({
     name: String,
-    content: { type: mongoose.Schema.Types.ObjectId, ref: 'Content'},
+    content: String,
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
     creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 }, {timestamps: true})

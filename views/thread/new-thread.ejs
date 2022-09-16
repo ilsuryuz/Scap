@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <form action="/category">
+        <input type="submit" value="Back" />
+    </form>
+    <h2>Add a New Category</h2>
+    <form action="/thread/<%=forumID%>" method="POST">
+        <label for="name">Thread name: </label>
+        <input type="text" name="name">
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>

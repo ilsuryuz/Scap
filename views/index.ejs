@@ -54,12 +54,12 @@
                                 <td><img src="" alt=""></td>
                                 <% category.forum.forEach(forum => { %> 
                                 <td>
-                                    <a href="/forum/<%=forum._id%>"><%= forum.name%></a>
+                                    <a href="/forum/<%=forum.id%>"><%= forum.name%></a>
                                 </td>
                                 <td><%=forum.threads.length%></td>
                                 <% let activity = 0; %> 
                                 <% forum.subForum.forEach(subForum => {activity = activty + subForum.threads.length; subForum.threads.forEach(thread =>{activty = activity + thread.comments.length})}); %> 
-                                <% forum.threads.forEach(thread => {activity = activity+ thread.comments.length;}) %> 
+                                <% forum.threads.forEach(thread => {console.log(JSON.stringify(thread)) }) %> 
                                 <% activity = activity + forum.threads.length; %> 
                                 <td><%= activity%> </td>
                                 <td><%= forum.createdAt.getDate() + '-' + forum.createdAt.getMonth() + '-' + forum.createdAt.getFullYear()%> </td>

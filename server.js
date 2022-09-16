@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const { Socket } = require('dgram');
+const insertTextAtCursor = require('insert-text-at-cursor')
 require('dotenv').config();
 
 // ** Models **
@@ -111,8 +112,9 @@ app.use('/category', categoryController)
 // ** Forum **
 const forumController = require('./controllers/forum');
 app.use('/forum', forumController);
-
-
+// ** Thread **
+const threadController = require('./controllers/thread')
+app.use('/thread', threadController)
 
 // ** Listener **
 const PORT = process.env.PORT;

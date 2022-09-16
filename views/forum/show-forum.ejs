@@ -5,13 +5,38 @@
     <form action="/">
         <input type="submit" value="Back" />
     </form>
-    <h3><%= forum.name %> </h3>
     
     <form action="/category/<%=forum._id%>/edit">
         <input type="submit" value="Edit Category" />
     </form>
-    <form action="/category/<%=forum._id%>?_method=DELETE" method="POST">
-        <input type="submit" value="DELETE" />
-    </form>
+        <h3><%= forum.name %> </h3>
+        <h3>Topics</h3>
+        <div class="cat-content cat-<%=forum.name%>">
+            <table>
+                <tr>
+                    <th>Topic</th>
+                    <th>Replies</th>
+                    <th>By</th>
+                    <th>Date</th>
+                </tr>
+                <tr class="col-icon">
+                    <% if (currentUser) { %>
+                            <div>
+                                <form action="/thread/<%=forum._id%>/new-thread">
+                                    <input type="submit" value="Add Topic">
+                                </form>
+                            </div>
+                                <% } %>
+                    <% forum.threads.forEach(thread=> { %> 
+                    <td>
+                        <a href="/thread/<%=thread._id%>"><%=thread.name %></a>
+                    </td>
+                    <td><%= thread.comments.length %> </td>
+                    <td><%=thread.creator.username%> </td>
+                    <td><%=thread.createdAt.getDate() + '-' + thread.createdAt.getMonth() + '-' + thread.createdAt.getFullYear()%> </td>
+                    <% }) %> 
+                </tr>
+            </table>
+        </div>
 </body>
 </html>

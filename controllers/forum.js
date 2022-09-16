@@ -61,9 +61,11 @@ forumRouter.get('/:id/edit', (req, res) => {
 })
 // ** S **
 forumRouter.get('/:id', (req, res) => {
-    Forum.findById(req.params.id, (err, foundForum) => {
+    Forum.findById(req.params.id).populate({path: 'threads', populate: { path: 'creator'}}).exec(function (err, foundForum) {
+        console.log(foundForum)
         res.render('forum/show-forum.ejs', {
-            forum: foundForum
+            currentUser: req.session.currentUser,
+            forum: foundForum,
         })
     })
 })

@@ -55,11 +55,15 @@ threadRouter.get('/:id/edit', (req, res) => {
 })
 // ** S **
 threadRouter.get('/:id', (req, res) => {
-    Thread.findById(req.params.id).populate({path: 'comments', populate: { path: 'creator'}}).exec(function (err, foundThread) {
+    Thread.findById(req.params.id).populate({path: 'creator'}).exec(function (err, foundThread) {
+        let threadCreator = foundThread.creator
+        Thread.findById(req.params.id).populate({path: 'comments', populate: [{path: 'creator'}]}).exec(function (err, foundThread) {
         res.render('thread/show-thread.ejs', {
             thread: foundThread,
             currentUser: req.session.currentUser,
+            thCreator: threadCreator
         })
+    })
     })
 })
 // ** Export Sessions Router **

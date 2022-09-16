@@ -5,7 +5,6 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const { Socket } = require('dgram');
-const insertTextAtCursor = require('insert-text-at-cursor')
 require('dotenv').config();
 
 // ** Models **
@@ -87,16 +86,12 @@ io.on('connection', (socket) => {
 // ** Routes **
 // ** Server Index **
 app.get('/', (req, res) => {
-    if (req.session.currentUser) {
         Category.find({}).populate({path: 'forum', populate: { path: 'threads'}}).exec(function (err, allCategories) {
             res.render('index.ejs', {
                 currentUser: req.session.currentUser,
                 category: allCategories,
             })
         })
-    } else {
-        res.redirect('/sessions/new')
-    };
 });
 
 // *** Controllers ***

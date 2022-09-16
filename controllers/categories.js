@@ -11,12 +11,13 @@ categoryRouter.get('/', (req, res) => {
     Category.find({}, (error, allCategories) => {
         res.render('category/index.ejs', {
             category: allCategories,
+            tabTitle: "Categories"
         })
     })
 })
 // ** N **
 categoryRouter.get('/new-category', (req, res) => {
-    res.render('category/new-category.ejs')
+    res.render('category/new-category.ejs', {tabTitle: "New Category"})
 })
 // ** D **
 categoryRouter.delete("/:id", (req, res) => {
@@ -48,6 +49,7 @@ categoryRouter.get('/:id/edit', (req, res) => {
     Category.findById(req.params.id, (err, foundCategory) => {
         res.render('category/edit.ejs', {
             category: foundCategory,
+            tabTitle: "Category Edit"
         })
     })
 })
@@ -55,7 +57,8 @@ categoryRouter.get('/:id/edit', (req, res) => {
 categoryRouter.get('/:id', (req, res) => {
     Category.findById(req.params.id, (err, foundCategory) => {
         res.render('category/show.ejs', {
-            category: foundCategory
+            category: foundCategory,
+            tabTitle: foundCategory.name,
         })
     })
 })

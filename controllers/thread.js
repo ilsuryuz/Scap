@@ -12,6 +12,7 @@ threadRouter.get('/:forum/new-thread', (req, res) => {
     res.render('thread/new-thread.ejs', 
     {forumID: req.params.forum,
         forumOrigin: req.query.forum,
+        tabTitle: "Create Topic"
     })
 })
 // ** D **
@@ -52,6 +53,7 @@ threadRouter.get('/:id/thread-edit', (req, res) => {
     Thread.findById(req.params.id, (err, foundThread) => {
         res.render('thread/edit-thread.ejs', {
             thread: foundThread,
+            tabTitle: "Edit Topic"
         })
     })
 })
@@ -65,6 +67,7 @@ threadRouter.get('/:id/', (req, res) => {
             currentUser: req.session.currentUser,
             thCreator: threadCreator,
             forumOrigin: req.query.forum,
+            tabTitle: foundThread.name,
         })
     })
     })

@@ -15,6 +15,7 @@ commentRouter.get('/:thread/new-comment/', (req, res) => {
             threadID: req.params.thread,
             threadName: foundThread.name,
             forumOrigin: req.query.forum,
+            tabTitle: "Add Comment"
         })
     })
     
@@ -56,6 +57,7 @@ commentRouter.get('/:id/edit-comment', (req, res) => {
     Comment.findById(req.params.id, (err, foundComment) => {
         res.render('comment/edit-comment.ejs', {
             comment: foundComment,
+            tabTitle: "Edit Comment"
         })
     })
 })
@@ -66,6 +68,7 @@ commentRouter.get('/:id', (req, res) => {
         res.render('thread/show-thread.ejs', {
             thread: foundThread,
             currentUser: req.session.currentUser,
+            tabTitle: foundThread.name
         })
     })
 })

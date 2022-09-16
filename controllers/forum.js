@@ -9,7 +9,7 @@ const Category = require('../models/categories')
 // ** N **
 forumRouter.get('/:category/new-forum', (req, res) => {
     res.render('forum/new-forum.ejs', 
-    {catID: req.params.category})
+    {catID: req.params.category, tabTitle: "New Forum"})
 })
 // ** D **
 forumRouter.delete("/:id", (req, res) => {
@@ -56,6 +56,7 @@ forumRouter.get('/:id/edit', (req, res) => {
     Category.findById(req.params.id, (err, foundCategory) => {
         res.render('category/edit.ejs', {
             category: foundCategory,
+            tabTitle: "Edit Forum"
         })
     })
 })
@@ -65,6 +66,7 @@ forumRouter.get('/:id', (req, res) => {
         res.render('forum/show-forum.ejs', {
             currentUser: req.session.currentUser,
             forum: foundForum,
+            tabTitle: foundForum.name
         })
     })
 })

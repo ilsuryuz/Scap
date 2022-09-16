@@ -90,6 +90,7 @@ app.get('/', (req, res) => {
             res.render('index.ejs', {
                 currentUser: req.session.currentUser,
                 category: allCategories,
+                tabTitle: "Scap"
             })
         })
 });

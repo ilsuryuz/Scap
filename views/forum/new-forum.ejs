@@ -5,6 +5,7 @@
     <form action="javascript:history.back()">
         <input type="submit" value="Back" />
     </form>
+    <%- include('./partials/banner.ejs') %>
     <h2>Add a New Category</h2>
     <form action="/forum/<%=catID%>" method="POST">
         <label for="name">Category name: </label>

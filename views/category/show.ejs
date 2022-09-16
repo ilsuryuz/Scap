@@ -5,6 +5,7 @@
     <form action="/category">
         <input type="submit" value="Back" />
     </form>
+    <%- include('./partials/banner.ejs') %>
     <h3><%= category.category %> </h3>
 
     <form action="/category/<%=category._id%>/edit">

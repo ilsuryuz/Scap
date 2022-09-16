@@ -6,6 +6,7 @@
         <form action="javascript:history.back()">
             <input type="submit" value="Back" />
         </form>
+        <%- include('./partials/banner.ejs') %>
         <h2>Replying to <%= threadName.toUpperCase() %>
         </h2>
         <form action="/comment/<%=threadID%>/?forum=<%=forumOrigin%>" method="POST">

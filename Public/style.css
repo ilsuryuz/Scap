@@ -1,7 +1,53 @@
-body {
-    background-color: #331E38;
-    color: #70A0AF;
+body{
+    font-family: 'kairaregular';
+    background-color: rgba(65, 65, 74, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ccb46c;
 }
+.banner img{
+    width: 500px;
+    height: auto;
+    border: 3px solid #ccb46c;
+    background-color: black;
+}
+button {
+    background-color: black;
+    border: 3px solid #ccb46c;
+    border-radius: 5px;
+    height: 35px;
+    color: #ccb46c;
+    transition-duration: 0.4s;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+}
+button:hover {
+    color: black;
+    border: 3px solid #ccb46c;
+    background-color: #ccb46c;
+}
+input[type=submit] {
+    background-color: black;
+    border: 3px solid #ccb46c;
+    border-radius: 5px;
+    height: 35px;
+    color: #ccb46c;
+    transition-duration: 0.4s;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+}
+input[type=submit]:hover {
+    color: black;
+    border: 3px solid #ccb46c;
+    background-color: #ccb46c;
+}
+
+form {
+    display:contents;
+    margin-top: 0;
+}
+
 .hidden {
-    display: none
+    display: none;
 }

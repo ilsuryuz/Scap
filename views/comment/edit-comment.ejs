@@ -3,7 +3,7 @@
 <%- include('../partials/head.ejs') %>
 
     <body>
-        
+        <%- include('./partials/banner.ejs') %>
         <h2>Edit comment %> </h2>
         <form action="/comment/<%=comment._id%>?_method=PUT" method="POST">
             <textarea name="content" id="commentContent" cols="30" rows="10"><%- comment.content %> </textarea>

@@ -6,6 +6,7 @@
         <form action="javascript:history.back()">
             <input type="submit" value="Back" />
         </form>
+        <%- include('./partials/banner.ejs') %>
         <h2>Add a New Topic</h2>
         <form action="/thread/<%=forumID%>/?forum=<%=forumOrigin %> " method="POST">
             <label for="name">Thread name: </label>

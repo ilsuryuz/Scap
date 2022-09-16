@@ -5,77 +5,73 @@
 
     <body>
         <%- include('./partials/nav.ejs') %>
-            <div class="banner">
-                <a href="/" title="Index">
-                    <img src="" alt="">
-                </a>
-            </div>
-            <div class="content">
-                <div class="chatPlace">
-                    <%- include('./partials/chat.ejs') %>
-                </div>
-                <div class="cat-menu">
-                    <% category.forEach(category=> { %>
-                        <button onclick="show('<%= category.category%>')" class="category <%=category.category%>"
-                            id="<%category.category%>">
-                            <%=category.category%>
-                        </button>
-                        <% }) %>
-                            <% if (currentUser) { %>
-                                <% if (currentUser.username==="admin" ) {%>
-                                    <div>
-                                        <form action="/category">
-                                            <input type="submit" value="Cat-Index">
-                                        </form>
-                                    </div>
-                                    <% } %>
-                                        <% } %>
-                </div>
-                <% category.forEach(category=> { %>
-                    <div class="cat-content cat-<%=category.category%> hidden">
-                        <table>
-                            <tr>
-                                <th>Forum</th>
-                                <th>Threads</th>
-                                <th>Date</th>
-                                <th>
-                                    <% if (currentUser) { %>
-                                        <% if (currentUser.username==="admin" ) {%>
-                                            <form action="/forum/<%=category._id%>/new-forum">
-                                                <input type="submit" value="Add Forum">
-                                            </form>
-                                            <% } %>
-                                                <% } %>
-                                </th>
-                            </tr>
-                            <% category.forum.forEach(forum=> { %>
-                                <tr class="col-icon">
-                                    <td>
-                                        <a href="/forum/<%=forum.id%>">
-                                            <%= forum.name%>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <%=forum.threads.length%>
-                                    </td>
-                                    <% let activity=0; %>
-                                        <td>
-                                            <%= forum.createdAt.getDate() + '-' + forum.createdAt.getMonth() + '-' +
-                                                forum.createdAt.getFullYear()%>
-                                        </td>
-                                </tr>
-                                <% }) %>
-                        </table>
+            <%- include('./partials/banner.ejs') %>
+                <div class="content">
+                    <div class="chatPlace">
+                        <%- include('./partials/chat.ejs') %>
                     </div>
-                    <% }) %>
-            </div>
-            <script>
-                function show(id) {
-                    $('.cat-content').addClass('hidden')
-                    $('.cat-' + id).removeClass('hidden')
-                }
-            </script>
-            <%- include('../partials/footer.ejs') %>
+                    <div class="cat-menu">
+                        <% category.forEach(category=> { %>
+                            <button onclick="show('<%= category.category%>')" class="category <%=category.category%>"
+                                id="<%=category.category%>">
+                                <%=category.category%>
+                            </button>
+                            <% }) %>
+                                <% if (currentUser) { %>
+                                    <% if (currentUser.username==="admin" ) {%>
+                                        <div>
+                                            <form action="/category">
+                                                <input type="submit" value="Cat-Index">
+                                            </form>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                    </div>
+                    <% category.forEach(category=> { %>
+                        <div class="cat-content cat-<%=category.category%> hidden">
+                            <table>
+                                <tr>
+                                    <th>Forum</th>
+                                    <th>Threads</th>
+                                    <th>Date</th>
+                                    <th>
+                                        <% if (currentUser) { %>
+                                            <% if (currentUser.username==="admin" ) {%>
+                                                <form action="/forum/<%=category._id%>/new-forum">
+                                                    <input type="submit" value="Add Forum">
+                                                </form>
+                                                <% } %>
+                                                    <% } %>
+                                    </th>
+                                </tr>
+                                <% category.forum.forEach(forum=> { %>
+                                    <tr class="col-icon">
+                                        <td>
+                                            <a href="/forum/<%=forum.id%>">
+                                                <%= forum.name%>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <%=forum.threads.length%>
+                                        </td>
+                                        <% let activity=0; %>
+                                            <td>
+                                                <%= forum.createdAt.getDate() + '-' + forum.createdAt.getMonth() + '-' +
+                                                    forum.createdAt.getFullYear()%>
+                                            </td>
+                                    </tr>
+                                    <% }) %>
+                            </table>
+                        </div>
+                        <% }) %>
+                </div>
+                <%- include('./partials/footer.ejs') %>
+                    <script>
+                        function show(id) {
+                            $('.cat-content').addClass('hidden')
+                            $('.cat-' + id).removeClass('hidden')
+                        }
+                    </script>
     </body>
 
 </html>

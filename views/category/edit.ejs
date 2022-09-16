@@ -5,6 +5,7 @@
     <form action="/category/<%=category._id%>">
         <input type="submit" value="Back" />
     </form>
+    <%- include('./partials/banner.ejs') %>
     <form action="/category/<%=category._id%>?_method=PUT" method="POST">
         <input type="text" name="category" value="<%= category.category%>">
         <input type="submit">

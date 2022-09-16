@@ -6,6 +6,7 @@
         <form action="javascript:history.back()">
             <input type="submit" value="Back" />
         </form>
+        <%- include('../partials/banner.ejs') %>
         <% if(currentUser) { if(currentUser.username === thCreator.username) { %> 
         <form action="/thread/<%=thread._id%>/thread-edit">
             <input type="submit" value="Edit Thread" />

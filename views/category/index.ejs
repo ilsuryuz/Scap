@@ -8,6 +8,7 @@
     <form action="/">
         <input type="submit" value="Back" />
     </form>
+    <%- include('./partials/banner.ejs') %>
     <% category.forEach( category => { %> 
         <a href="/category/<%=category._id; %>">
         <h3><%= category.category %> </h3>

@@ -28,11 +28,6 @@
                                             <input type="submit" value="Cat-Index">
                                         </form>
                                     </div>
-                                    <div>
-                                        <form action="/forum/<%=category._id%>/new-forum">
-                                            <input type="submit" value="Add Forum">
-                                        </form>
-                                    </div>
                                     <% } %>
                                         <% } %>
                 </div>
@@ -43,6 +38,15 @@
                                 <th>Forum</th>
                                 <th>Threads</th>
                                 <th>Date</th>
+                                <th>
+                                    <% if (currentUser) { %>
+                                        <% if (currentUser.username==="admin" ) {%>
+                                            <form action="/forum/<%=category._id%>/new-forum">
+                                                <input type="submit" value="Add Forum">
+                                            </form>
+                                            <% } %>
+                                                <% } %>
+                                </th>
                             </tr>
                             <% category.forum.forEach(forum=> { %>
                                 <tr class="col-icon">

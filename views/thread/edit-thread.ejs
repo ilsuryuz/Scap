@@ -6,15 +6,16 @@
         <form action="javascript:history.back()">
             <input type="submit" value="Back" />
         </form>
-        <h2>Replying to <%= threadName.toUpperCase() %>
-        </h2>
-        <form action="/comment/<%=threadID%>/?forum=<%=forumOrigin%>" method="POST">
-            <textarea name="content" id="commentContent" cols="30" rows="10"></textarea>
-            <input type="submit" value="Add">
+        <h2>Add a New Topic</h2>
+        <form action="/thread/<%=thread._id%>?_method=PUT" method="POST">
+            <label for="name">Edit title: </label>
+            <input type="text" name="name" value="<%= thread.name %> "></br >
+            <textarea name="content" id="threadContent" cols="30" rows="10"><%- thread.content %> </textarea>
+            <input type="submit" value="Submit Edit">
         </form>
         <script>
             tinymce.init({
-                selector: 'textarea#commentContent',
+                selector: 'textarea#threadContent',
                 plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
                 menubar: 'file edit view insert format tools table help',
                 toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',

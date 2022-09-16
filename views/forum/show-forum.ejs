@@ -2,12 +2,8 @@
 <html lang="en">
     <%- include('../partials/head.ejs') %>
 <body>
-    <form action="/">
+    <form action="javascript:history.back()">
         <input type="submit" value="Back" />
-    </form>
-    
-    <form action="/category/<%=forum._id%>/edit">
-        <input type="submit" value="Edit Category" />
     </form>
         <h3><%= forum.name %> </h3>
         <h3>Topics</h3>
@@ -29,7 +25,7 @@
                 <% forum.threads.forEach(thread=> { %> 
                 <tr class="col-icon">
                     <td>
-                        <a href="/thread/<%=thread._id%>"><%=thread.name %></a>
+                        <a href="/thread/<%=thread._id%>/?forum=<%=forum._id%> "><%=thread.name %></a>
                     </td>
                     <td><%= thread.comments.length %> </td>
                     <td><%=thread.creator.username%> </td>

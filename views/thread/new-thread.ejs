@@ -3,11 +3,11 @@
 <%- include('../partials/head.ejs') %>
 
     <body>
-        <form action="/forum">
+        <form action="javascript:history.back()">
             <input type="submit" value="Back" />
         </form>
         <h2>Add a New Topic</h2>
-        <form action="/thread/<%=forumID%>" method="POST">
+        <form action="/thread/<%=forumID%>/?forum=<%=forumOrigin %> " method="POST">
             <label for="name">Thread name: </label>
             <input type="text" name="name"></br >
             <textarea name="content" id="threadContent" cols="30" rows="10"></textarea>
@@ -16,9 +16,9 @@
         <script>
             tinymce.init({
                 selector: 'textarea#threadContent',
-                plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
-                menubar: 'file edit view insert format tools table help',
-                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                plugins: 'paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars image link codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount textpattern noneditable help charmap quickbars emoticons',
+                menubar: '',
+                toolbar: '| emoticons codesample | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor',
             });
         </script>
     </body>

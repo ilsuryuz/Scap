@@ -1,24 +1,24 @@
 <!-- Chatbox HTML and needed Scripts -->
+<div class="chatbox">
+    <ul class="list-group" id="messages"></ul>
+</div>
 <% if (currentUser) { %>
-    <div class="chatbox">
-        <ul class="list-group" id="messages"></ul>
-    </div>
     <div>
         <form class="chatForm" action="">
             <textarea class="editor" id="m" cols="30" rows="10"></textarea>
             <input type="submit" value="Send">
         </form>
-        
+        <% } %>
     </div>
     <!-- jQuery -->
     <script>
         // ** Communication between Server and Client **
-                tinymce.init({
-                  selector: 'textarea.editor',
-                  plugins: 'emoticons image',
-                  menubar: false,
-                  toolbar: 'emoticons image',
-                });
+        tinymce.init({
+            selector: 'textarea.editor',
+            plugins: 'emoticons image',
+            menubar: false,
+            toolbar: 'emoticons image',
+        });
         const socket = io();
         $('.chatForm').submit(function () {
             const msg = $('#m').val();
@@ -33,5 +33,3 @@
             $("#messages").append('<li class="list-group-item">' + '<h4>' + msg.username + '</h4>' + '<p>' + msg.message + '</p>' + '</li>');
         });
     </script>
-    
-    <% } %>

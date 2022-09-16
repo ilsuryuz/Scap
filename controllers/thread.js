@@ -10,24 +10,26 @@ const Comment = require('../models/comment')
 // ** N **
 threadRouter.get('/:forum/new-thread', (req, res) => {
     res.render('thread/new-thread.ejs', 
-    {forumID: req.params.forum})
+    {forumID: req.params.forum,
+        forumOrigin: req.query.forum,
+    })
 })
 // ** D **
 threadRouter.delete("/:id", (req, res) => {
-    Category.findByIdAndDelete(req.params.id, (err, deletedCategory) => {
+    Comment.findByIdAndDelete(req.params.id, (err, deletedCategory) => {
         res.redirect('/category')
     })
 })
 // ** U **
 threadRouter.put('/:id/', (req, res) => {
-    Category.findByIdAndUpdate(
+    Thread.findByIdAndUpdate(
         req.params.id,
         req.body,
         {
             new: true,
         },
-        (err, updatedCategory) => {
-            res.redirect(`/category/${req.params.id}`)
+        (err, updatedThread) => {
+            res.redirect(`/thread/${req.params.id}`)
         }
     )
 })
@@ -41,27 +43,28 @@ threadRouter.post('/:forum', (req, res) => {
         Forum.findById(req.params.forum, (err, foundForum) => {
             foundForum.threads.push(createdThread._id)
             foundForum.save()
+            res.redirect(`/thread/${createdThread._id}`, {forumOrigin: f})
         })
-        res.redirect(`/thread/${createdThread._id}`)
     })
 })
 // ** E **
-threadRouter.get('/:id/edit', (req, res) => {
-    Category.findById(req.params.id, (err, foundCategory) => {
-        res.render('category/edit.ejs', {
-            category: foundCategory,
+threadRouter.get('/:id/thread-edit', (req, res) => {
+    Thread.findById(req.params.id, (err, foundThread) => {
+        res.render('thread/edit-thread.ejs', {
+            thread: foundThread,
         })
     })
 })
 // ** S **
-threadRouter.get('/:id', (req, res) => {
+threadRouter.get('/:id/', (req, res) => {
     Thread.findById(req.params.id).populate({path: 'creator'}).exec(function (err, foundThread) {
         let threadCreator = foundThread.creator
         Thread.findById(req.params.id).populate({path: 'comments', populate: [{path: 'creator'}]}).exec(function (err, foundThread) {
         res.render('thread/show-thread.ejs', {
             thread: foundThread,
             currentUser: req.session.currentUser,
-            thCreator: threadCreator
+            thCreator: threadCreator,
+            forumOrigin: req.query.forum,
         })
     })
     })

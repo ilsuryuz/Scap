@@ -3,12 +3,11 @@
 <%- include('../partials/head.ejs') %>
 
     <body>
-        <form action="/">
+        <form action="javascript:history.back()">
             <input type="submit" value="Back" />
         </form>
-        <% console.log(thCreator) %> 
         <% if(currentUser) { if(currentUser.username === thCreator.username) { %> 
-        <form action="/thread/<%=thread._id%>/edit">
+        <form action="/thread/<%=thread._id%>/thread-edit">
             <input type="submit" value="Edit Thread" />
         </form>
         <% }} %> 
@@ -16,18 +15,23 @@
             <%= thread.name %>
         </h3>
         <div class="content-Thread">
-            <%- thread.content %>
-                <form action="/comment/<%=thread._id%>/new-comment">
+            <%- thread.content %> </br >
+            <% if(currentUser) {%> 
+                <form action="/comment/<%=thread._id%>/new-comment/?forum=<%=forumOrigin%>">
                     <input type="submit" value="Reply">
                 </form>
+                <% } %> 
         </div>
         <div class="content-Comments">
             <% thread.comments.forEach(comment=> { %> 
                 <div class="content-Comment">
                     <% if(currentUser) { %> 
                         <% if(currentUser.username === comment.creator.username) {  %> 
-                        <form action="/comment/<%=comment._id%>/edit">
+                        <form action="/comment/<%=comment._id%>/edit-comment">
                             <input type="submit" value="Edit Comment" />
+                        </form>
+                        <form action="/comment/<%=comment._id%>?_method=DELETE&thread=<%=thread._id%>&forum=<%=forumOrigin%> " method="POST">
+                            <input type="submit" value="Delete">
                         </form>
                         <% } %> 
                         <% } %> 

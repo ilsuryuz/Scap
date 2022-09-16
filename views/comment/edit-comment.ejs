@@ -3,14 +3,11 @@
 <%- include('../partials/head.ejs') %>
 
     <body>
-        <form action="javascript:history.back()">
-            <input type="submit" value="Back" />
-        </form>
-        <h2>Replying to <%= threadName.toUpperCase() %>
-        </h2>
-        <form action="/comment/<%=threadID%>/?forum=<%=forumOrigin%>" method="POST">
-            <textarea name="content" id="commentContent" cols="30" rows="10"></textarea>
-            <input type="submit" value="Add">
+        
+        <h2>Edit comment %> </h2>
+        <form action="/comment/<%=comment._id%>?_method=PUT" method="POST">
+            <textarea name="content" id="commentContent" cols="30" rows="10"><%- comment.content %> </textarea>
+            <input type="submit" value="Submit Edit">
         </form>
         <script>
             tinymce.init({

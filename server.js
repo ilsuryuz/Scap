@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
 // ** Routes **
 // ** Server Index **
 app.get('/', (req, res) => {
-        Category.find({}).populate({path: 'forum', populate: { path: 'threads'}}).exec(function (err, allCategories) {
+        Category.find({}).populate({path: 'forum', populate: [{ path: 'threads'}]}).exec(function (err, allCategories) {
             res.render('index.ejs', {
                 currentUser: req.session.currentUser,
                 category: allCategories,

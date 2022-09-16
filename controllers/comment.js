@@ -8,32 +8,33 @@ const Comment = require('../models/comment');
 
 
 // ** N **
-commentRouter.get('/:thread/new-comment', (req, res) => {
+commentRouter.get('/:thread/new-comment/', (req, res) => {
     Thread.findById(req.params.thread, (err, foundThread) => {
         res.render('comment/new-comment.ejs', 
         {
             threadID: req.params.thread,
             threadName: foundThread.name,
+            forumOrigin: req.query.forum,
         })
     })
     
 })
 // ** D **
 commentRouter.delete("/:id", (req, res) => {
-    Category.findByIdAndDelete(req.params.id, (err, deletedCategory) => {
-        res.redirect('/category')
+    Comment.findByIdAndDelete(req.params.id, (err, deletedComment) => {
+        res.redirect(`/thread/${req.query.thread}/?forum=${req.query.forum}`)
     })
 })
 // ** U **
 commentRouter.put('/:id/', (req, res) => {
-    Category.findByIdAndUpdate(
+    Comment.findByIdAndUpdate(
         req.params.id,
         req.body,
         {
             new: true,
         },
         (err, updatedCategory) => {
-            res.redirect('/category/'+ req.params.id)
+            res.redirect('/')
         }
     )
 })
@@ -46,15 +47,15 @@ commentRouter.post('/:comment', (req, res) => {
         Thread.findById(req.params.comment, (err, foundThread) => {
             foundThread.comments.push(createdComment._id)
             foundThread.save()
-            res.redirect('back')
         })
+        res.redirect(`/thread/${req.params.comment}/?forum=${req.query.forum}`)
     })
 })
 // ** E **
-commentRouter.get('/:id/edit', (req, res) => {
-    Category.findById(req.params.id, (err, foundCategory) => {
-        res.render('category/edit.ejs', {
-            category: foundCategory,
+commentRouter.get('/:id/edit-comment', (req, res) => {
+    Comment.findById(req.params.id, (err, foundComment) => {
+        res.render('comment/edit-comment.ejs', {
+            comment: foundComment,
         })
     })
 })

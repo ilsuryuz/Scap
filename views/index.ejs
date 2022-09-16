@@ -39,7 +39,7 @@
                                 <th>Forum</th>
                                 <th>Threads</th>
                                 <th>Posts</th>
-                                <th>Last Post</th>
+                                <th>Date</th>
                             </tr>
                             <tr class="col-icon">
                                 <% if (currentUser) { %>
@@ -54,7 +54,7 @@
                                 <td><img src="" alt=""></td>
                                 <% category.forum.forEach(forum => { %> 
                                 <td>
-                                    <%= forum.name%>
+                                    <a href="/forum/<%=forum._id%>"><%= forum.name%></a>
                                 </td>
                                 <td><%=forum.threads.length%></td>
                                 <% let activity = 0; %> 
@@ -62,7 +62,7 @@
                                 <% forum.threads.forEach(thread => {activity = activity+ thread.comments.length;}) %> 
                                 <% activity = activity + forum.threads.length; %> 
                                 <td><%= activity%> </td>
-                                <td><%= forum.threads[forum.threads.length -1].name %> </td>
+                                <td><%= forum.createdAt.getDate() + '-' + forum.createdAt.getMonth() + '-' + forum.createdAt.getFullYear()%> </td>
                                 <% }) %> 
                             </tr>
                         </table>

@@ -48,8 +48,7 @@ forumRouter.post('/:category', (req, res) => {
         //         })
         //     }
         // })
-        console.log(createdForum)
-        res.redirect('/')
+        res.redirect(`/forum/${createdForum._id}`)
     })
 })
 // ** E **
@@ -62,9 +61,9 @@ forumRouter.get('/:id/edit', (req, res) => {
 })
 // ** S **
 forumRouter.get('/:id', (req, res) => {
-    Category.findById(req.params.id, (err, foundCategory) => {
-        res.render('category/show.ejs', {
-            category: foundCategory
+    Forum.findById(req.params.id, (err, foundForum) => {
+        res.render('forum/show-forum.ejs', {
+            forum: foundForum
         })
     })
 })

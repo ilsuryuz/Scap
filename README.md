@@ -2,8 +2,8 @@
 Scap forum
 
 #### A user based forum made with express!
-<img src="./images/mainPage.png" alt="Starting Page"/>
-<img src="./images/mainPage2.png" alt="Starting Page"/>
+<img src="./images/main-page.png" alt="mainepage"/>
+<img src="./images/main-page2.png" alt="mainpage1"/>
 
 ## Description
 This website is used as a little WIKI to find out information about characters, maps, weapons, in the game Valorant.

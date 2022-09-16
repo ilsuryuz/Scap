@@ -3,6 +3,7 @@ Scap forum
 
 #### A user based forum made with express!
 <img src="./images/mainPage.png" alt="Starting Page"/>
+<img src="./images/mainPage2.png" alt="Starting Page"/>
 
 ## Description
 This website is used as a little WIKI to find out information about characters, maps, weapons, in the game Valorant.
@@ -38,14 +39,12 @@ This website is used as a little WIKI to find out information about characters, 
 ## Screenshots
 * Current Main Page
     <img src="./images/mainPage.png" alt="Starting Page"/>
-* Information select list
-    <img src="./images/infoSelect.png" alt="infoSelect"/>
-*  Agent list menu
-    <img src="./images/Agents.png" alt="agentSelect"/>
-* Agent full information section
-    <img src="./images/agentFullInfo.png" alt="agentFullInfo"/>
-* Agent ability descritpion
-    <img src="./images/Project.gif" alt="abilityDesc"/>
+* Forum Page
+    <img src="./images/forum-page.png" alt="forum"/>
+*  Reply/Thread add
+    <img src="./images/reply-thread.png" alt="reply-thread"/>
+* Thread page
+    <img src="./images/thread-page.png" alt="thread-page"/>
 
 
 ## Planning

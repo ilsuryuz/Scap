@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const Thread = require('../models/thread');
 const Forum = require('../models/forum');
-const Content = require('../models/content')
+const Comment = require('../models/comment')
 
 // ** N **
 threadRouter.get('/:forum/new-thread', (req, res) => {
@@ -55,9 +55,10 @@ threadRouter.get('/:id/edit', (req, res) => {
 })
 // ** S **
 threadRouter.get('/:id', (req, res) => {
-    Thread.findById(req.params.id, (err, foundThread) => {
+    Thread.findById(req.params.id).populate({path: 'comments', populate: { path: 'creator'}}).exec(function (err, foundThread) {
         res.render('thread/show-thread.ejs', {
-            thread: foundThread
+            thread: foundThread,
+            currentUser: req.session.currentUser,
         })
     })
 })

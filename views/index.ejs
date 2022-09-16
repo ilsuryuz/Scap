@@ -28,6 +28,11 @@
                                             <input type="submit" value="Cat-Index">
                                         </form>
                                     </div>
+                                    <div>
+                                        <form action="/forum/<%=category._id%>/new-forum">
+                                            <input type="submit" value="Add Forum">
+                                        </form>
+                                    </div>
                                     <% } %>
                                         <% } %>
                 </div>
@@ -35,36 +40,27 @@
                     <div class="cat-content cat-<%=category.category%> hidden">
                         <table>
                             <tr>
-                                <th></th>
                                 <th>Forum</th>
                                 <th>Threads</th>
-                                <th>Posts</th>
                                 <th>Date</th>
                             </tr>
-                            <tr class="col-icon">
-                                <% if (currentUser) { %>
-                                    <% if (currentUser.username==="admin" ) {%>
-                                        <div>
-                                            <form action="/forum/<%=category._id%>/new-forum">
-                                                <input type="submit" value="Add Forum">
-                                            </form>
-                                        </div>
-                                        <% } %>
-                                            <% } %>
-                                <td><img src="" alt=""></td>
-                                <% category.forum.forEach(forum => { %> 
-                                <td>
-                                    <a href="/forum/<%=forum.id%>"><%= forum.name%></a>
-                                </td>
-                                <td><%=forum.threads.length%></td>
-                                <% let activity = 0; %> 
-                                <% forum.subForum.forEach(subForum => {activity = activty + subForum.threads.length; subForum.threads.forEach(thread =>{activty = activity + thread.comments.length})}); %> 
-                                <% forum.threads.forEach(thread => {console.log(JSON.stringify(thread)) }) %> 
-                                <% activity = activity + forum.threads.length; %> 
-                                <td><%= activity%> </td>
-                                <td><%= forum.createdAt.getDate() + '-' + forum.createdAt.getMonth() + '-' + forum.createdAt.getFullYear()%> </td>
-                                <% }) %> 
-                            </tr>
+                            <% category.forum.forEach(forum=> { %>
+                                <tr class="col-icon">
+                                    <td>
+                                        <a href="/forum/<%=forum.id%>">
+                                            <%= forum.name%>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%=forum.threads.length%>
+                                    </td>
+                                    <% let activity=0; %>
+                                        <td>
+                                            <%= forum.createdAt.getDate() + '-' + forum.createdAt.getMonth() + '-' +
+                                                forum.createdAt.getFullYear()%>
+                                        </td>
+                                </tr>
+                                <% }) %>
                         </table>
                     </div>
                     <% }) %>

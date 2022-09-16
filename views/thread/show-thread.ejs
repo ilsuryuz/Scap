@@ -6,17 +6,27 @@
         <form action="/">
             <input type="submit" value="Back" />
         </form>
-
+        <% if(currentUser) { if(currentUser.username === thread.creator.username) { %> 
         <form action="/thread/<%=thread._id%>/edit">
             <input type="submit" value="Edit Thread" />
         </form>
+        <% }} %> 
         <h3>
             <%= thread.name %>
         </h3>
         <div class="content-Thread">
-            <%- thread.content %> 
+            <%- thread.content %>
+                <form action="/comment/<%=thread._id%>/new-comment">
+                    <input type="submit" value="Reply">
+                </form>
         </div>
+        <div class="content-Comments">
+            <% thread.comments.forEach(comment=> { %> 
+                <div class="content-Comment">
+                    <h3><%= comment.creator.username %> </h3>
+                    <%- comment.content %> 
+                </div>
+                <% }) %> 
         </div>
     </body>
-
 </html>

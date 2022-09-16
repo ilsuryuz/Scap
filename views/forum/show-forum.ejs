@@ -12,6 +12,13 @@
         <h3><%= forum.name %> </h3>
         <h3>Topics</h3>
         <div class="cat-content cat-<%=forum.name%>">
+            <% if (currentUser) { %>
+                <div>
+                    <form action="/thread/<%=forum._id%>/new-thread">
+                        <input type="submit" value="Add Topic">
+                    </form>
+                </div>
+                    <% } %>
             <table>
                 <tr>
                     <th>Topic</th>
@@ -21,13 +28,6 @@
                 </tr></br >
                 <% forum.threads.forEach(thread=> { %> 
                 <tr class="col-icon">
-                    <% if (currentUser) { %>
-                            <div>
-                                <form action="/thread/<%=forum._id%>/new-thread">
-                                    <input type="submit" value="Add Topic">
-                                </form>
-                            </div>
-                                <% } %>
                     <td>
                         <a href="/thread/<%=thread._id%>"><%=thread.name %></a>
                     </td>

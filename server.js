@@ -88,7 +88,7 @@ io.on('connection', (socket) => {
 // ** Server Index **
 app.get('/', (req, res) => {
     if (req.session.currentUser) {
-        Category.find({}).populate('forum').exec(function (err, allCategories) {
+        Category.find({}).populate({path: 'forum', populate: { path: 'threads'}}).exec(function (err, allCategories) {
             res.render('index.ejs', {
                 currentUser: req.session.currentUser,
                 category: allCategories,
@@ -115,7 +115,9 @@ app.use('/forum', forumController);
 // ** Thread **
 const threadController = require('./controllers/thread')
 app.use('/thread', threadController)
-
+// ** Comment **
+const commentController = require('./controllers/comment')
+app.use('/comment', commentController)
 // ** Listener **
 const PORT = process.env.PORT;
 // ** Server.listen for Socket.io to work **
